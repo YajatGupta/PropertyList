@@ -1,0 +1,18 @@
+.Modal{
+    width: 60%;
+    z-index: 20;
+    position: fixed;
+    top:20%;
+    left: 15%;
+    padding: 0;
+    transition: all ease-out 0.3s;
+    box-sizing: border-box;
+    box-shadow: 1px 1px 1px black;
+}
+
+@media (min-width: 600px) {
+    .Modal {
+        width: 500px;
+        left: calc(50% - 250px);
+    }
+}

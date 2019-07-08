@@ -1,0 +1,12 @@
+.Properties{
+    width: 80%;
+    height: 92%;
+    background-color: #181515cb;
+    position: fixed;
+    top:8%;
+    left: 20%;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}

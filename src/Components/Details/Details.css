@@ -1,0 +1,9 @@
+.Details {
+    height: 90%;
+    width: 100%;
+    position: fixed;
+    top:10%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
