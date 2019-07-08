@@ -27,6 +27,7 @@ class Form extends Component {
                 rating: false,
                 amenities: false
             },
+            image:null,
             valid: this.props.property ? true : false,
             successMessage: "",
             errorMessage: ""
@@ -51,7 +52,8 @@ class Form extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        let postdets = { ...this.state.form };
+
+        let postdets = { ...this.state.form,image:this.state.image };
         postdets.amenities = postdets.amenities.split(' ');
         axios.post(url + ls.get('userID'), postdets)
             .then(response => {
@@ -69,6 +71,10 @@ class Form extends Component {
     handleChange = (event) => {
         let name = event.target.name;
         let value = event.target.value;
+        if(name==="propimage"){
+            this.setState({image:value});
+            return;
+        }
         let tempForm = this.state.form;
         tempForm[name] = value;
         this.setState({ form: tempForm })
@@ -117,7 +123,7 @@ class Form extends Component {
                             </div>
                             <div className="card-body">
                                 <div className="form">
-                                    <form>
+                                    <form encType="multipart/form-data">
                                         <div className="form-group">
                                             <label className="form-label">
                                                 Name:
@@ -146,12 +152,12 @@ class Form extends Component {
                                             <input className="form-control" name="amenities" type="text" value={this.state.form.amenities} placeholder={this.props.property ? this.props.property.propertyAmenities.join(' ') : null} onChange={this.handleChange} required />
                                             <span className="text-danger">{this.state.formErrors.amenities}</span>
                                         </div>
-                                        {/* <div className="form-group">
+                                        <div className="form-group">
                                             <label className="form-label">
                                                 Image:
                         </label>
-                                            <input className="form-control" name="propimage" type="file" value={this.state.form.name} onChange={this.handleChange} autoFocus required />
-                                        </div> */}
+                                            <input className="form-control" name="propimage" type="file" onChange={this.handleChange} required />
+                                        </div>
                                         <div className="form-group">
                                             {this.props.property ? (
                                                 <button onClick={this.handleUpdate} disabled={!this.state.valid} className="btn btn-primary btn-block">Update Property</button>
