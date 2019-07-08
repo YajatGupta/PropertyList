@@ -15,7 +15,7 @@ const property = (props) => {
         <div className="card-header text-center">
             <h5>{props.prop.propertyName}</h5>
         </div>
-        <img src="Slide1.jpg" style={{ width: "100%", height: "100%" }} className="card-image" alt="" />
+        <img src="house4.jpg" style={{ width: "100%", height: "100%" }} className="card-image" alt="" />
         <div className="card-body" style={{textAlign:"left"}}>
             <div>
                 <span style={{ fontWeight: "bold" }}>Price: </span>
