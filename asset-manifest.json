@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Property-List/static/css/main.ee0344be.chunk.css",
-    "main.js": "/Property-List/static/js/main.a2c93a08.chunk.js",
-    "main.js.map": "/Property-List/static/js/main.a2c93a08.chunk.js.map",
-    "runtime~main.js": "/Property-List/static/js/runtime~main.34a8816d.js",
-    "runtime~main.js.map": "/Property-List/static/js/runtime~main.34a8816d.js.map",
-    "static/js/2.ee4acd37.chunk.js": "/Property-List/static/js/2.ee4acd37.chunk.js",
-    "static/js/2.ee4acd37.chunk.js.map": "/Property-List/static/js/2.ee4acd37.chunk.js.map",
-    "index.html": "/Property-List/index.html",
-    "precache-manifest.a8c5f98f0198c46ea6651d3f91c97c6d.js": "/Property-List/precache-manifest.a8c5f98f0198c46ea6651d3f91c97c6d.js",
-    "service-worker.js": "/Property-List/service-worker.js",
-    "static/css/main.ee0344be.chunk.css.map": "/Property-List/static/css/main.ee0344be.chunk.css.map",
-    "static/media/index.css": "/Property-List/static/media/house2.7aeb5355.jpg"
+    "main.css": "/property-list/static/css/main.1726f7c9.chunk.css",
+    "main.js": "/property-list/static/js/main.845f9dc4.chunk.js",
+    "main.js.map": "/property-list/static/js/main.845f9dc4.chunk.js.map",
+    "runtime~main.js": "/property-list/static/js/runtime~main.528452d4.js",
+    "runtime~main.js.map": "/property-list/static/js/runtime~main.528452d4.js.map",
+    "static/js/2.ee4acd37.chunk.js": "/property-list/static/js/2.ee4acd37.chunk.js",
+    "static/js/2.ee4acd37.chunk.js.map": "/property-list/static/js/2.ee4acd37.chunk.js.map",
+    "index.html": "/property-list/index.html",
+    "precache-manifest.46bf03b18a329cd2ed1da0a67f2b1b64.js": "/property-list/precache-manifest.46bf03b18a329cd2ed1da0a67f2b1b64.js",
+    "service-worker.js": "/property-list/service-worker.js",
+    "static/css/main.1726f7c9.chunk.css.map": "/property-list/static/css/main.1726f7c9.chunk.css.map",
+    "static/media/index.css": "/property-list/static/media/house2.7aeb5355.jpg"
   }
 }
