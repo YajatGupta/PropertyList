@@ -4,6 +4,7 @@ const userDB = {};
 
 userDB.getUser = (username) => {
     return dbmodel.getUserCollection().then(model=>{
+        console.log("connected user model");
         return model.findOne({userID:username},{_id:0})
         .then(data=>{
             console.log("data2",data);

@@ -22,8 +22,8 @@ const property = (props) => {
                 <span >{props.prop.propertyPrice}</span>
             </div>
             <div>
-                <span style={{ float: "left" , fontWeight:"bold"}}>Ratings: </span>
-                <div className={classes.Rating} style={{textAlign:"left"}}>
+                <span style={{fontWeight:"bold"}}>Ratings: </span>
+                <div className={classes.Rating} style={{display:"inline"}}>
                     {arr}
                 </div>
             </div>

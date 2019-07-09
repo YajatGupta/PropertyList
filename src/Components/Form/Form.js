@@ -3,7 +3,7 @@ import axios from 'axios';
 import ls from 'local-storage';
 
 const url = "http://localhost:1050/add-property/"
-const url2 = "http://localhost:1050/updateProperty/"
+const url2 = "http://localhost:1050/updateProperty/";
 
 class Form extends Component {
     constructor(props) {
@@ -52,8 +52,8 @@ class Form extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-
-        let postdets = { ...this.state.form,image:this.state.image };
+        console.log(this.state.image);
+        let postdets = { ...this.state.form};
         postdets.amenities = postdets.amenities.split(' ');
         axios.post(url + ls.get('userID'), postdets)
             .then(response => {
@@ -72,6 +72,7 @@ class Form extends Component {
         let name = event.target.name;
         let value = event.target.value;
         if(name==="propimage"){
+            console.log(event.target);
             this.setState({image:value});
             return;
         }

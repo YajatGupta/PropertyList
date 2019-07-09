@@ -46,6 +46,7 @@ router.get('/getproperties', (req, res) => {
 })
 
 router.post('/add-property/:userID', (req, res) => {
+    console.log("form-data");
     let userID = req.params.userID;
     let obj = req.body;
     let property = {

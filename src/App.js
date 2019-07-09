@@ -28,7 +28,7 @@ class App extends Component {
     this.setState({ show: false });
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     //clear the local storage of all the values
     ls.clear();
   }
@@ -64,8 +64,11 @@ class App extends Component {
               ) : null}
             </ul>
             <ul className="navbar-nav ml-auto">
+              {ls.get('userID') ? (<li className="nav-item nav-link text-light font-weight-bold">
+                Hi, {ls.get('userID')}
+              </li>) : null}
               <li className="nav-item">
-                {ls.get('userID') ? (<button style={{ display: "inline" }} onClick={() => { ls.set('userID', '');ls.set('property',{});this.props.history.replace('/home') }} className="nav-link btn bg-light text-dark">Logout
+                {ls.get('userID') ? (<button style={{ display: "inline" }} onClick={() => { ls.set('userID', ''); ls.set('property', {}); this.props.history.replace('/home') }} className="nav-link btn bg-light text-dark">Logout
                 </button>) : (<button style={{ display: "inline" }} onClick={this.showmodal} className="nav-link btn bg-light text-dark">Login
                 </button>)}
               </li>
@@ -80,7 +83,7 @@ class App extends Component {
           <Route path="/add-property" component={Form} />
           <Route path="/my-properties" component={Myproperties} />
           <Route path="/propertyDets" component={Details} />
-          <Route path="/edit-details" component={Edit}/>
+          <Route path="/edit-details" component={Edit} />
           <Route path="/" component={Home} />
           <Route path="*" render={() => { return <Redirect to="/home" /> }} />
         </Switch>

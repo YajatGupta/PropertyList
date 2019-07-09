@@ -73,13 +73,16 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "node property_WS/app.js && node scripts/start.js",
+    "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "server": "node-env-run server --exec nodemon",
+    "dev": "run-p server start"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
+  "proxy": "http://localhost:1050",
   "homepage": "https://yajatgupta.github.io/property-list/",
   "browserslist": {
     "production": [
@@ -142,5 +145,10 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "node-env-run": "^3.0.2",
+    "nodemon": "^1.19.1",
+    "npm-run-all": "^4.1.5"
   }
 }

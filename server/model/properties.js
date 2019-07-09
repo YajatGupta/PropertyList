@@ -3,6 +3,7 @@ const dbmodel = require('../utilities/connection');
 const properties = {}
 
 properties.getAllProperties = () => {
+    console.log("getAllProperties");
     return dbmodel.getPropertyCollection().then(model => {
         return model.find().then(data => {
             if (data.length > 0) return data;
