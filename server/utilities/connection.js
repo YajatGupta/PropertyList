@@ -9,6 +9,7 @@ const propertySchema = Schema({
     propertyRating: Number,
     propertyAmenities: [String],
     propertyPrice: String,
+    propertyImage:String,
     userID: String,
 }, { collection: "Property" })
 

@@ -32,9 +32,11 @@ class Myproperties extends Component {
             <div className={classes.Myproperties}>
                 {ls.get('userID') ? (this.state.properties.length > 0 ? (<div className="container">
                     <div className="row">
-                        {this.state.properties.map(property => {
+                        {this.state.properties.map((property,i) => {
                             return (
-                                <div className="col-md-4 mb-2">
+                                <div 
+                                key={"property" + i}
+                                className="col-md-4 mb-2">
                                     <Property prop={property} />
                                     <button
                                         onClick={() => {

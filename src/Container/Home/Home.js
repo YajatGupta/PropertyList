@@ -16,8 +16,6 @@ class Home extends Component {
         //make the ajax call to recieve all the property listings from the data base
         axios.get(url).then(response => {
             if (response.data.res) {
-                console.log("true");
-                console.log(response.data.properties);
                 this.setState({ properties: response.data.properties, propertiescopy: response.data.properties });
             } else {
                 this.setState({ properties: [], propertiescopy: [] });

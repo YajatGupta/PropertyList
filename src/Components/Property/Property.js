@@ -3,6 +3,8 @@ import classes from './Property.css'
 import ls from 'local-storage';
 import { withRouter } from 'react-router-dom';
 
+
+
 const property = (props) => {
     const arr = [];
     if (props.prop.propertyRating) {
@@ -10,12 +12,14 @@ const property = (props) => {
             arr.push(<span key={"span" + i}><i className="fa fa-star" style={{ color: "orange",margin:"0 0.5rem"}}></i></span>);
         }
     }
+
+    let imageurl = props.prop.propertyImage ? props.prop.propertyImage.split('\\')[props.prop.propertyImage.split('\\').length-1] : 'house4.jpg';
     return (
         props.prop.propertyName?(<div className="card">
         <div className="card-header text-center">
             <h5>{props.prop.propertyName}</h5>
         </div>
-        <img src="house4.jpg" style={{ width: "100%", height: "100%" }} className="card-image" alt="" />
+        <img src={imageurl} style={{ width: "100%", height: "100%" }} className="card-image" alt="" />
         <div className="card-body" style={{textAlign:"left"}}>
             <div>
                 <span style={{ fontWeight: "bold" }}>Price: </span>

@@ -28,6 +28,9 @@ class App extends Component {
     this.setState({ show: false });
   }
 
+  componentWillMount(){
+    ls.clear();
+  }
   componentWillUnmount() {
     //clear the local storage of all the values
     ls.clear();
@@ -68,8 +71,8 @@ class App extends Component {
                 Hi, {ls.get('userID')}
               </li>) : null}
               <li className="nav-item">
-                {ls.get('userID') ? (<button style={{ display: "inline" }} onClick={() => { ls.set('userID', ''); ls.set('property', {}); this.props.history.replace('/home') }} className="nav-link btn bg-light text-dark">Logout
-                </button>) : (<button style={{ display: "inline" }} onClick={this.showmodal} className="nav-link btn bg-light text-dark">Login
+                {ls.get('userID') ? (<button style={{ display: "inline" }} onClick={() => {ls.clear(); this.props.history.replace('/home') }} className="nav-link text-dark">Logout
+                </button>) : (<button style={{ display: "inline"}} onClick={this.showmodal} className="nav-link bg-light btn text-dark">Login
                 </button>)}
               </li>
             </ul>

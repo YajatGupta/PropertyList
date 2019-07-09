@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ls from 'local-storage';
 
-const url = "http://localhost:1050/add-property/"
+const URL = "http://localhost:1050/add-property/"
 const url2 = "http://localhost:1050/updateProperty/";
 
 class Form extends Component {
@@ -13,7 +13,7 @@ class Form extends Component {
                 price: "",
                 name: "",
                 rating: "",
-                amenities: ""
+                amenities: "",
             },
             formErrors: {
                 price: "",
@@ -27,7 +27,7 @@ class Form extends Component {
                 rating: false,
                 amenities: false
             },
-            image:null,
+            image: null,
             valid: this.props.property ? true : false,
             successMessage: "",
             errorMessage: ""
@@ -52,34 +52,43 @@ class Form extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
+        let formdata = new FormData();
+        formdata.append('price', this.state.form.price);
+        formdata.append('name', this.state.form.name);
+        formdata.append('rating', this.state.form.rating);
+        formdata.append('amenities', this.state.form.amenities.split(' '));
+        formdata.append('propimage', this.state.image);
+        console.log(formdata);
         console.log(this.state.image);
-        let postdets = { ...this.state.form};
-        postdets.amenities = postdets.amenities.split(' ');
-        axios.post(url + ls.get('userID'), postdets)
-            .then(response => {
-                if (response.data.res) {
-                    this.setState({ successMessage: response.data.message, errorMessage: "" });
-                } else {
-                    this.setState({ successMessage: "", errorMessage: response.data.message });
-                }
-            })
-            .catch(err => {
-                this.setState({ successMessage: "", errorMessage: err.response.data.message });
-            })
+        axios({
+            url: URL + ls.get('userID'),
+            method: "POST",
+            headers: {
+                "content-type": "multipart/form-data"
+            },
+            data: formdata
+        }).then(response => {
+            if (response.data.res) {
+                this.setState({ successMessage: response.data.message, errorMessage: "" });
+            } else {
+                this.setState({ successMessage: "", errorMessage: response.data.message });
+            }
+        }).catch(err => {
+            this.setState({ successMessage: "", errorMessage: err.response.data.message });
+        })
     }
 
     handleChange = (event) => {
         let name = event.target.name;
         let value = event.target.value;
-        if(name==="propimage"){
-            console.log(event.target);
-            this.setState({image:value});
-            return;
-        }
         let tempForm = this.state.form;
         tempForm[name] = value;
         this.setState({ form: tempForm })
-        this.validate(name, value);
+        if (name !== "propimage") {
+            this.validate(name, value);
+        } else {
+            this.setState({ image: event.target.files[0] });
+        }
     }
 
     validate(fieldname, fieldvalue) {
@@ -111,7 +120,7 @@ class Form extends Component {
     }
 
     render() {
-        if(this.props.property){
+        if (this.props.property) {
             console.log(this.props.property)
         }
         return (
@@ -124,7 +133,7 @@ class Form extends Component {
                             </div>
                             <div className="card-body">
                                 <div className="form">
-                                    <form encType="multipart/form-data">
+                                    <form>
                                         <div className="form-group">
                                             <label className="form-label">
                                                 Name:

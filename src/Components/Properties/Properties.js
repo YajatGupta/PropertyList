@@ -12,7 +12,8 @@ const properties = (props) => {
                         return (
                             <div 
                             key={"property"+index}
-                            className="col-md-4 mb-2">
+                            className="col-md-4 mb-2"
+                            style={{height:"50%"}}>
                                 <Property
                                     prop={property} />
                             </div>

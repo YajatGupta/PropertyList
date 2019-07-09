@@ -9,10 +9,10 @@ const app = express();
 
 const fileStorage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, path.join(__dirname,'../../public','images'));
+        cb(null, path.join(__dirname , '../public'));
     },
     filename: (req, file, cb) => {
-        cb(null, new Date().toISOString() + '-' + file.originalname);
+        cb(null,  'Image-' + file.originalname);
     }
 });
 
@@ -29,11 +29,12 @@ const fileFilter = (req, file, cb) => {
 };
 
 app.use(cors());
-app.use(bodyParser.json());
 app.use(
-    multer({ storage: fileStorage, fileFilter: fileFilter }).single('propimage')
+    multer({storage:fileStorage,fileFilter:fileFilter}).single('propimage')
 );
-app.use('/images', express.static(path.join(__dirname,'../../public','images')));
+app.use(bodyParser.json());
+
+//app.use('/images', express.static(path.join(__dirname,'../../public','images')));
 app.use('/', router);
 
 

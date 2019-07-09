@@ -49,13 +49,22 @@ router.post('/add-property/:userID', (req, res) => {
     console.log("form-data");
     let userID = req.params.userID;
     let obj = req.body;
+    let imageurl = req.file;
+    if(!imageurl){
+        res.send({'res':false,"message":"Invalid format of the document"});
+        res.end();
+        return;
+    }
+    console.log(imageurl);
     let property = {
         propertyName: obj.name,
         propertyRating: obj.rating,
         propertyAmenities: obj.amenities,
         propertyPrice: obj.price,
+        propertyImage:imageurl.path,
         userID: userID,
     }
+    console.log(property);
     properties.addProperty(property).then(data => {
         let message = `${data} added successfully for userID: ${userID}`;
         res.send({ "res": true, "message": message });
