@@ -80,7 +80,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "homepage": "https://yajatgupta.github.io/Property-List",
+  "homepage": "https://yajatgupta.github.io/property-list/",
   "browserslist": {
     "production": [
       ">0.2%",
