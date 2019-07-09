@@ -83,7 +83,7 @@
     "extends": "react-app"
   },
   "proxy": "http://localhost:1050",
-  "homepage": "https://yajatgupta.github.io/property-list/",
+  "homepage": "https://YajatGupta.github.io/PropertyList/",
   "browserslist": {
     "production": [
       ">0.2%",
