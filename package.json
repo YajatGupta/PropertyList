@@ -73,10 +73,12 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "node scripts/start.js",
+    "start-local": "node scripts/start.js",
+    "start":"cd server && node index.js",
+    "heroku-postbuild" : "npm install && npm run build",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "dev" : "node-env-run server --exec nodemon"
+    "dev" : "node-env-run server"
   },
   "eslintConfig": {
     "extends": "react-app"
