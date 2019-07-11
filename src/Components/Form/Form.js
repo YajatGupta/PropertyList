@@ -52,6 +52,8 @@ class Form extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
+        console.log(this.state.form);
+        console.log("image, ", this.state.image);
         let formdata = new FormData();
         formdata.append('price', this.state.form.price);
         formdata.append('name', this.state.form.name);
@@ -63,9 +65,6 @@ class Form extends Component {
         axios({
             url: URL + ls.get('userID'),
             method: "POST",
-            headers: {
-                "content-type": "multipart/form-data"
-            },
             data: formdata
         }).then(response => {
             if (response.data.res) {
@@ -76,6 +75,15 @@ class Form extends Component {
         }).catch(err => {
             this.setState({ successMessage: "", errorMessage: err.response.data.message });
         })
+        // axios.post(URL + ls.get('userID'),formdata,{'headers':{'content-type':'multipart/form-data'}}).then(response => {
+        //     if (response.data.res) {
+        //         this.setState({ successMessage: response.data.message, errorMessage: "" });
+        //     } else {
+        //         this.setState({ successMessage: "", errorMessage: response.data.message });
+        //     }
+        // }).catch(err => {
+        //     this.setState({ successMessage: "", errorMessage: err.response.data.message });
+        // })
     }
 
     handleChange = (event) => {
@@ -172,7 +180,7 @@ class Form extends Component {
                                             {this.props.property ? (
                                                 <button onClick={this.handleUpdate} disabled={!this.state.valid} className="btn btn-primary btn-block">Update Property</button>
                                             ) : (
-                                                    <button onClick={this.handleSubmit} disabled={!this.state.valid} className="btn btn-primary btn-block">Add Property</button>
+                                                    <button onClick={(event) => this.handleSubmit(event)} disabled={!this.state.valid} className="btn btn-primary btn-block">Add Property</button>
                                                 )}
                                         </div>
                                         {this.state.successMessage ? (<span className="text-success">{this.state.successMessage}</span>) : null}

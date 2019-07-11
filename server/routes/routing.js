@@ -50,11 +50,11 @@ router.post('/add-property/:userID', (req, res) => {
     let userID = req.params.userID;
     let obj = req.body;
     let imageurl = req.file;
-    if(!imageurl){
-        res.send({'res':false,"message":"Invalid format of the document"});
-        res.end();
-        return;
-    }
+    // if(!imageurl){
+    //     res.send({'res':false,"message":"Invalid format of the document"});
+    //     res.end();
+    //     return;
+    // }
     console.log(imageurl);
     let property = {
         propertyName: obj.name,
@@ -66,8 +66,11 @@ router.post('/add-property/:userID', (req, res) => {
     }
     console.log(property);
     properties.addProperty(property).then(data => {
+        console.log("data outer");
         let message = `${data} added successfully for userID: ${userID}`;
+        console.log(message);
         res.send({ "res": true, "message": message });
+        res.end();
     }).catch(err => {
         res.send({ "res": false, "message": err.message });
         res.end();

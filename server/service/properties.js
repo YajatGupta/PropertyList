@@ -6,6 +6,7 @@ const properties = {};
 properties.addProperty = (property) => {
     return propertydb.addProperty(property)
         .then(data => {
+            console.log("data inner")
             return data;
         }).catch(err => {
             throw err;

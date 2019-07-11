@@ -33,7 +33,7 @@ properties.getPropertiesByUser = (userID) => {
 properties.addProperty = (property) => {
     return dbmodel.getPropertyCollection().then(model => {
         return model.create(property).then(data => {
-            if (data) return property.propertyName;
+            if (data){console.log("data returned"); return property.propertyName;}
             throw new Error("Something Went Wrong");
         }).catch(err => {
             throw err;
