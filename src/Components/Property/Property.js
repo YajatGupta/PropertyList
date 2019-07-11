@@ -11,8 +11,7 @@ const property = (props) => {
         for (let i = 0; i < props.prop.propertyRating; i++) {
             arr.push(<span key={"span" + i}><i className="fa fa-star" style={{ color: "orange",margin:"0 0.5rem"}}></i></span>);
         }
-    }
-
+    }  
     let imageurl = props.prop.propertyImage ? props.prop.propertyImage.split('\\')[props.prop.propertyImage.split('\\').length-1] : 'house4.jpg';
     return (
         props.prop.propertyName?(<div className="card">

@@ -45,13 +45,14 @@ properties.addProperty = (property) => {
 
 properties.updateProperty = (userID,property) => {
     return dbmodel.getPropertyCollection().then(model => {
-        return model.update(
-            {userID:userID,propertyName:property.propertyName},
+        return model.updateOne(
+            {userID:userID,_id:property.propertyID},
             {$set : {
                 propertyName:property.propertyName,
                 propertyRating:property.propertyRating,
                 propertyPrice:property.propertyPrice,
-                propertyAmenities:property.propertyAmenities
+                propertyAmenities:property.propertyAmenities,
+                propertyImage:property.propertyImage
             }}).then(data=>{
                 if (data) return property.propertyName;
                 throw new Error("Something Went Wrong");

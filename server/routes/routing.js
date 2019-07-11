@@ -50,11 +50,11 @@ router.post('/add-property/:userID', (req, res) => {
     let userID = req.params.userID;
     let obj = req.body;
     let imageurl = req.file;
-    // if(!imageurl){
-    //     res.send({'res':false,"message":"Invalid format of the document"});
-    //     res.end();
-    //     return;
-    // }
+    if(!imageurl){
+        res.send({'res':false,"message":"Invalid format of the document"});
+        res.end();
+        return;
+    }
     console.log(imageurl);
     let property = {
         propertyName: obj.name,
@@ -80,15 +80,24 @@ router.post('/add-property/:userID', (req, res) => {
 router.put('/updateProperty/:userID', (req, res) => {
     let userID = req.params.userID;
     let obj = req.body;
+    let imageurl = req.file;
+    if(!imageurl){
+        res.send({'res':false,"message":"Invalid format of the document"});
+        res.end();
+        return;
+    }
+    console.log(imageurl);
     let property = {
+        propertyID:obj.id,
         propertyName: obj.name,
         propertyRating: obj.rating,
         propertyAmenities: obj.amenities,
         propertyPrice: obj.price,
+        propertyImage:imageurl.path,
         userID: userID,
     }
     properties.updateProperty(userID,property).then(data => {
-        let message = `${data} added successfully for userID: ${userID}`;
+        let message = `${data} updated successfully for userID: ${userID}`;
         res.send({ "res": true, "message": message });
     }).catch(err => {
         res.send({ "res": false, "message": err.message });

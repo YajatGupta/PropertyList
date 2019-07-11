@@ -34,11 +34,26 @@ class Form extends Component {
         }
     }
 
+    // placeholder={this.props.property ? this.props.property.propertyName : null}
+
     handleUpdate = (event) => {
         event.preventDefault();
-        let postdets = { ...this.state.form };
-        postdets.amenities = postdets.amenities.split(' ');
-        axios.put(url2 + ls.get('userID'), postdets).then(response => {
+        console.log(this.props.property._id);
+        console.log(this.state.form);
+        console.log("image, ", this.state.image);
+        let config = {
+            headers:{
+                'content-type':'multipart/form-data'
+            }
+        }
+        let formdata = new FormData();
+        formdata.append('price', this.state.form.price);
+        formdata.append('name', this.state.form.name);
+        formdata.append('rating', this.state.form.rating);
+        formdata.append('amenities', this.state.form.amenities.split(' '));
+        formdata.append('propimage', this.state.image);
+        formdata.append('id',this.props.property._id);
+        axios.put(url2 + ls.get('userID'), formdata,config).then(response => {
             if (response.data.res) {
                 this.setState({ successMessage: response.data.message, errorMessage: "" });
             } else {
@@ -75,15 +90,6 @@ class Form extends Component {
         }).catch(err => {
             this.setState({ successMessage: "", errorMessage: err.response.data.message });
         })
-        // axios.post(URL + ls.get('userID'),formdata,{'headers':{'content-type':'multipart/form-data'}}).then(response => {
-        //     if (response.data.res) {
-        //         this.setState({ successMessage: response.data.message, errorMessage: "" });
-        //     } else {
-        //         this.setState({ successMessage: "", errorMessage: response.data.message });
-        //     }
-        // }).catch(err => {
-        //     this.setState({ successMessage: "", errorMessage: err.response.data.message });
-        // })
     }
 
     handleChange = (event) => {
@@ -128,11 +134,8 @@ class Form extends Component {
     }
 
     render() {
-        if (this.props.property) {
-            console.log(this.props.property)
-        }
         return (
-            <div className="container" style={{ position: "absolute", top: "10%", left: "10%" }}>
+            <div className="container" style={{ position: "fixed", top: "10%", left: "10%"}}>
                 <div className="row">
                     <div className="col-md-6 offset-md-3">
                         <div className="card">
@@ -146,28 +149,28 @@ class Form extends Component {
                                             <label className="form-label">
                                                 Name:
                         </label>
-                                            <input className="form-control" name="name" type="text" value={this.state.form.name} placeholder={this.props.property ? this.props.property.propertyName : null} onChange={this.handleChange} required autoFocus />
+                                            <input className="form-control" name="name" type="text" value={this.state.form.name || (this.props.property && this.props.property.propertyName)}  onChange={this.handleChange} required autoFocus />
                                             <span className="text-danger">{this.state.formErrors.name}</span>
                                         </div>
                                         <div className="form-group">
                                             <label className="form-label">
                                                 Price:
                         </label>
-                                            <input className="form-control" name="price" type="text" value={this.state.form.price} placeholder={this.props.property ? this.props.property.propertyPrice : null} onChange={this.handleChange} required />
+                                            <input className="form-control" name="price" type="text" value={this.state.form.price || (this.props.property && this.props.property.propertyPrice)}  onChange={this.handleChange} required />
                                             <span className="text-danger">{this.state.formErrors.price}</span>
                                         </div>
                                         <div className="form-group">
                                             <label className="form-label">
                                                 Rating:
                         </label>
-                                            <input className="form-control" name="rating" type="number" value={this.state.form.rating} placeholder={this.props.property ? this.props.property.propertyRating : null} onChange={this.handleChange} required />
+                                            <input className="form-control" name="rating" type="number" value={this.state.form.rating || (this.props.property && this.props.property.propertyRating)} onChange={this.handleChange} required />
                                             <span className="text-danger">{this.state.formErrors.rating}</span>
                                         </div>
                                         <div className="form-group">
                                             <label className="form-label">
                                                 Amenities:
                         </label>
-                                            <input className="form-control" name="amenities" type="text" value={this.state.form.amenities} placeholder={this.props.property ? this.props.property.propertyAmenities.join(' ') : null} onChange={this.handleChange} required />
+                                            <input className="form-control" name="amenities" type="text" value={this.state.form.amenities || (this.props.property && this.props.property.propertyAmenities.join(' '))} onChange={this.handleChange} required />
                                             <span className="text-danger">{this.state.formErrors.amenities}</span>
                                         </div>
                                         <div className="form-group">
